@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>Please enter your email address</h1>
+        <input  id="email"></input>
+        <button id="join">Join</button>
+        <script>
+            let email = document.getElementById("email")
+            document.getElementById("join").onclick = () => {
+                console.log(email.value)
+                const url = "http://localhost:5001/sendEmail"; // Replace with your API endpoint URL
+                const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email.value })
+                };
+                fetch(url, options)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Response:', data);
+                    // Handle the response data
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Handle errors
+                });
+
+            }
+        </script>
+    </div>
+</body>
+</html>
